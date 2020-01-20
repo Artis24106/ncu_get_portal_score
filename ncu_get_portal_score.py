@@ -9,8 +9,8 @@ with open(f"{path}/config.json") as configF:
 c = crawl.crawler(config["portal"]["acct"], config["portal"]["pwd"])
 score = c.parseHTML()
 
-with open(f"{path}/score.json", "r+") as s:
-    try:
+try:
+    with open(f"{path}/score.json", "r+") as s:
         oldScore = json.loads(s.read())
         msgTitle = ["成績", "學期平均", "累計平均"]
         i = 0
@@ -36,9 +36,8 @@ with open(f"{path}/score.json", "r+") as s:
         if msg != '':
             sender = emailSender.sender("Portal 成績更新", config["mail"]["from"], config["mail"]["from_pwd"], config["mail"]["to"])
             sender.send(msg)
-    except json.decoder.JSONDecodeError as e:  # First time -> create score.json
-        json.dump(score, s, indent=2)
-        pass
+except FileNotFoundError:  # First time -> create score.json
+    pass
 
 with open(f"{path}/score.json", "w") as s:
     json.dump(score, s, indent=2)
