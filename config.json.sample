@@ -1,0 +1,11 @@
+{
+	"portal": {
+		"acct": "106XXXXXX",
+		"pwd": ""
+	},
+	"mail": {
+		"from": "sample1@gmail.com",
+		"from_pwd": "",
+		"to": "sample2@gmail.com"
+	}
+}
