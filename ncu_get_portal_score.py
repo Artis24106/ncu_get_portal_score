@@ -37,6 +37,7 @@ with open(f"{path}/score.json", "r+") as s:
             sender = emailSender.sender("Portal 成績更新", config["mail"]["from"], config["mail"]["from_pwd"], config["mail"]["to"])
             sender.send(msg)
     except json.decoder.JSONDecodeError as e:  # First time -> create score.json
+        json.dump(score, s, indent=2)
         pass
 
 with open(f"{path}/score.json", "w") as s:
